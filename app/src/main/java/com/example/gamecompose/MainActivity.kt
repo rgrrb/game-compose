@@ -1,5 +1,6 @@
 package com.example.gamecompose
 
+import android.R.attr.fontWeight
 import android.R.attr.name
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -26,6 +28,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.HorizontalAlignmentLine
 import androidx.compose.ui.layout.VerticalAlignmentLine
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -68,7 +71,7 @@ fun MainGameScreen(modifier: Modifier = Modifier) {
             )
             Row() {
                 Text(
-                    text = "LIVES: ", fontFamily = oitobit, fontSize = 25.sp, color = Color.White
+                    text = "LIVES: ", fontFamily = oitobit, fontSize = 22.sp, color = Color.White
                 )
                 AndroidHp()
                 AndroidHp()
@@ -104,8 +107,7 @@ fun MainGameScreen(modifier: Modifier = Modifier) {
         }
         Row(modifier = Modifier.background(Color(114, 110, 110, 93))
             .height(50.dp)
-            .fillMaxWidth()
-            .padding(0.dp, 0.dp, 0.dp, 14.dp)) {
+            .fillMaxWidth()) {
             Text(text = "PRESS TO START",
                 fontSize = 20.sp,
                 fontFamily = oitobit,
@@ -116,15 +118,54 @@ fun MainGameScreen(modifier: Modifier = Modifier) {
 
             )
         }
+        Column(modifier = Modifier
+            .height(25.dp)) { }
     }
 }
-
+@Composable
+fun SecondGameScreen(modifier: Modifier = Modifier){
+    Column(
+        modifier = modifier
+            .background(Color.Black)
+            .fillMaxSize()
+    ){
+        Box(modifier = Modifier.align(Alignment.CenterHorizontally)
+            .fillMaxSize(),
+            contentAlignment = Alignment.Center) {
+            Row(modifier = Modifier.align(Alignment.Center)) {
+                AndroidEnemy(
+                    color = Color.Green
+                )
+                AndroidEnemy(
+                    color = Color.Red
+                )
+                AndroidEnemy(
+                    color = Color.Blue
+                )
+                AndroidEnemy(
+                    color = Color.Yellow
+                )
+                AndroidEnemy(
+                    color = Color.Green
+                )
+            }
+            Text(modifier = Modifier.fillMaxWidth(),
+                text = "GAME OVER",
+                fontFamily = oitobit,
+                color = Color.White,
+                fontSize = 50.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center
+            )
+        }
+    }
+}
 @Composable
 fun AndroidHp(modifier: Modifier = Modifier) {
     Image(
         contentDescription = "Android Enemy",
         painter = painterResource(R.drawable.android_24),
-        modifier = modifier.size(32.dp),
+        modifier = modifier.size(35.dp),
         colorFilter = ColorFilter.tint(Color.Green)
 
     )
@@ -135,7 +176,7 @@ fun AndroidEnemy(modifier: Modifier = Modifier, color: Color){
     Image(
         contentDescription = "Android Enemy",
         painter = painterResource(R.drawable.android_24),
-        modifier = modifier.size(70.dp),
+        modifier = modifier.size(75.dp),
         colorFilter = ColorFilter.tint(color)
     )
 }
